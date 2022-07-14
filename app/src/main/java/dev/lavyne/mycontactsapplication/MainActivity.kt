@@ -1,5 +1,6 @@
 package dev.lavyne.mycontactsapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +13,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         displayContacts()
+//        val intent=Intent(this@MainActivity,ViewContactActivity::class.java)
+//            intent.putExtra("name","phone","image","address")
+////            context.startActivity(intent)
     }
     fun displayContacts(){
         var contact =Contact("Lavy","0700045678","la@gmail.com","616 korongo road","https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&w=400")
@@ -22,5 +26,6 @@ class MainActivity : AppCompatActivity() {
         var contactList= listOf(contact,contact1,contact2,contact3,contact4)
          binding.rvContacts.layoutManager=LinearLayoutManager(this)
         binding.rvContacts.adapter=Contact_RV_Adapter(contactList)
+
     }
 }

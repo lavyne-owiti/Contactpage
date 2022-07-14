@@ -1,10 +1,12 @@
 package dev.lavyne.mycontactsapplication
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import dev.lavyne.mycontactsapplication.databinding.ContactListItemBinding
@@ -18,6 +20,7 @@ class Contact_RV_Adapter(var contactList:List<Contact>):RecyclerView.Adapter<con
 
     override fun onBindViewHolder(holder: contactViewHolder, position: Int) {
         var currentContact=contactList.get(position)
+        val context= holder.itemView.context
 //        var contactBinding=holder.binding
 //        contactBinding.tvName.text=currentContact.name
 //        contactBinding.tvPhoneNUmber.text=currentContact.phone
@@ -37,6 +40,22 @@ class Contact_RV_Adapter(var contactList:List<Contact>):RecyclerView.Adapter<con
 //                .placeholder(R.drawable.ic_round_person_24)
 //                .error(R.drawable.ic_baseline_error_outline_24)
                 .into(holder.binding.imgContact)
+            cvContact.setOnClickListener {
+                val intent=Intent(context,ViewContactActivity::class.java)
+                intent.putExtra("NAME",currentContact.name)
+                intent.putExtra("PHONE_NUMBER",currentContact.phone)
+                intent.putExtra("ADDRESS",currentContact.address)
+                intent.putExtra("EMAIL",currentContact.email)
+                intent.putExtra("IMAGE", currentContact.image)
+                context.startActivity(intent)
+            }
+            imgContact.setOnClickListener {
+//                val intent= Intent(context,ViewContactActivity::class.java)
+//                intent.putExtra("IMAGE",currentContact.image)
+//                context.startActivity(intent)
+                Toast.makeText(context,"You have clicked on you face",Toast.LENGTH_LONG)
+                    .show()
+            }
         }
 
     }
